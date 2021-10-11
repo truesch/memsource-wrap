@@ -10,23 +10,23 @@ class BaseModel(dict):
 
 
 class User(BaseModel):
-    pass
+    ...
 
 
 class Authentication(BaseModel):
-    pass
+    ...
 
 
 class Client(BaseModel):
-    pass
+    ...
 
 
 class Domain(BaseModel):
-    pass
+    ...
 
 
 class Language(BaseModel):
-    pass
+    ...
 
 
 class Project(BaseModel):
@@ -36,22 +36,22 @@ class Project(BaseModel):
 
 
 class Job(BaseModel):
-    pass
+    ...
 
 
 class JobPart(BaseModel):
-    pass
+    ...
 
 
 class TranslationMemory(BaseModel):
-    pass
+    ...
 
 
 class AsynchronousRequest(BaseModel):
     """
     You can know progress when hit api.Asynchronous.getAsyncRequest with id of this class instance.
     """
-    pass
+    ...
 
 
 class AsynchronousResponse(BaseModel):
@@ -66,7 +66,7 @@ class AsynchronousResponse(BaseModel):
 
 
 class Segment(BaseModel):
-    pass
+    ...
 
 
 class SegmentSearchResult(BaseModel):
@@ -79,12 +79,12 @@ class SegmentSearchResult(BaseModel):
 
 
 class Analysis(BaseModel):
-    pass
+    ...
 
 
 class MxliffUnit(BaseModel):
-    pass
+    ...
 
 
 class TermBase(BaseModel):
-    pass
+    ...
