@@ -1,5 +1,8 @@
 from typing import Any, Dict, List, Optional
-from memsource import constants, models, api_rest
+from memsource import constants, api_rest
+from memsource.schemas import Project as ProjectSchema
+from memsource.schemas import TranslationMemory as TMSchema
+from memsource.schemas import TermBase as TBSchema
 
 
 class Project(api_rest.BaseApi):
@@ -12,23 +15,29 @@ class Project(api_rest.BaseApi):
         target_langs: List[str],
         client: int=None,
         domain: int=None,
-    ) -> int:
-        return self._post("v1/projects", {
+    ) -> ProjectSchema:
+        return ProjectSchema(**self._post("v1/projects", {
             "name": name,
             "sourceLang": source_lang,
             "targetLangs": target_langs,
             "client": client,
             "domain": domain,
-        })["id"]
+        }))
 
-    def list(self, **query) -> List[models.Project]:
+    def get(
+        self,
+        uid: str
+    ) -> ProjectSchema:
+        return ProjectSchema(**self._get(f"v1/projects/{uid}"))
+
+    def list(self, **query) -> List[ProjectSchema]:
         projects = self._get("v1/projects", query)
-        return [models.Project(project) for project in projects.get("content", [])]
+        return [ProjectSchema(**project) for project in projects.get("content", [])]
 
-    def get_trans_memories(self, project_id: int) -> List[models.TranslationMemory]:
-        translation_memories = self._get("v1/projects/{}/transMemories".format(project_id))
+    def get_trans_memories(self, project_id: int) -> List[TMSchema]:
+        translation_memories = self._get(f"v1/projects/{project_id}/transMemories")
         return [
-            models.TranslationMemory(tm)
+            TMSchema(**tm)
             for tm in translation_memories.get("transMemories", [])
         ]
 
@@ -53,8 +62,8 @@ class Project(api_rest.BaseApi):
         if workflow_step is not None:
             params["workflowStep"] = workflow_step
 
-        # This end-point return nothing.
         self._put("v2/projects/{}/transMemories".format(project_id), params)
+        return None
 
     def set_status(self, project_id: int, status: constants.ProjectStatus) -> None:
         """Update project status
@@ -69,10 +78,11 @@ class Project(api_rest.BaseApi):
         self._post("v1/projects/{}/setStatus".format(project_id), {
             "status": status.value.upper()
         })
+        return None
 
-    def get_term_bases(self, project_id: int) -> List[models.TermBase]:
+    def get_term_bases(self, project_id: int) -> List[TBSchema]:
         """Returns the list of term bases belonging to a project.
         :param project_id: ID of the project containing the term bases
         """
         term_bases = self._get("v1/projects/{}/termBases".format(project_id))
-        return [models.TermBase(term_base) for term_base in term_bases.get("termBases", [])]
+        return [TBSchema(**term_base) for term_base in term_bases.get("termBases", [])]
