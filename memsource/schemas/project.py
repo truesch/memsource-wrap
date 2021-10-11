@@ -7,8 +7,6 @@ from memsource.schemas.client import Client
 from memsource.schemas.reference import Reference
 
 
-
-
 class Project(BaseSchema):
     uid: str
     internalId: int
@@ -28,7 +26,7 @@ class Project(BaseSchema):
     client: Optional[Client]
     costCenter: Optional[Dict[str, str]]
     businessUnit: Optional[Dict[str,str]]
-    dateDue: str
+    dateDue: Optional[str]
     status: str
     purchaseOrder: Optional[str]
     isPublishedOnJobBoard: bool
