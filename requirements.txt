@@ -8,3 +8,4 @@ flake8==3.5.0
 lxml>=3.4.4
 mypy-lang>=0.2.0
 typing
+pydantic==1.8.2
