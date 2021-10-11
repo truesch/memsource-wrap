@@ -1,7 +1,7 @@
 from typing import List
 from memsource import api_rest
 
-from memsource.schemas.client import Client as ClientModel
+from memsource.schemas import Client as ClientModel
 
 
 class Client(api_rest.BaseApi):

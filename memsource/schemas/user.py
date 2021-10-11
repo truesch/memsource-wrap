@@ -1,7 +1,7 @@
-from pydantic import BaseModel
+from memsource.schemas.base import BaseSchema
 
 
-class User(BaseModel):
+class User(BaseSchema):
     email: str
     firstName: str
     id: str
