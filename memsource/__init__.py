@@ -1,3 +1,3 @@
-__author__ = 'Gengo'
-__version__ = '0.5.9'
+__author__ = 'GeTraNet'
+__version__ = '0.1.0'
 __license__ = 'MIT'

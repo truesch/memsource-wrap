@@ -6,10 +6,10 @@ class Client(api_rest.BaseApi):
     # Document: https://cloud.memsource.com/web/docs/api#tag/Client
 
     def create(self, name: str) -> str:
-        return self._post("v1/client", {"name": name})["id"]
+        return self._post("v1/clients", {"name": name})["id"]
 
     def get(self, clientID: int) -> models.Client:
-        return models.Client(self._get("v1/clients/{}".format(clientID)))
+        return models.Client(self._get(f"v1/clients/{clientID}"))
 
     def list(self, page: int=0) -> List[models.Client]:
         clients = self._get("v1/clients", {"page": page})
