@@ -3,22 +3,20 @@
 
 memsource-wrap
 ##############
-Memsource API Wrap Library for Python
+Memsource API Library for Python
 
-This library require Python 3.5. If Python 3.5 is not installed on your system, I recommened to use `Pythonz <https://github.com/saghul/pythonz>`_
+This library requires Python 3.5+.
 
 Note
 =======
-This library still uses the Memsource Legacy API which will be deprecated in September 2020.
-
-We are currently adding support for the new Memsource REST API.
+This repository is a fork of gengo/memsource-wrap. Many thanks for the great work done there!
 
 Install
 =======
 
 ::
 
-    pip install -e 'git+https://github.com/gengo/memsource-wrap.git@master#egg=Package'
+    pip install -e 'git+https://github.com/truesch/memsource-python.git@master#egg=Package'
 
 Uninstall
 =========
@@ -34,9 +32,9 @@ Examples
 
     import memsource.memsource
 
-    m = memsource.memsource.Memsource(user_name='your user name', password='your password')
+    m = memsource.memsource.Memsource(user_name='<user_name>', password='<password>')
     print(m.client.create('test client'))
-    # will return id of the client
+    # will return a client object
 
 If you already have token, you can omit user_name and password. In this case, this SDK can skip authentication, so it's bit faster.
 
@@ -46,4 +44,4 @@ If you already have token, you can omit user_name and password. In this case, th
 
     m = memsource.memsource.Memsource(token='your token')
     print(m.client.create('test client'))
-    # will return id of the client
+    # will return a client object
