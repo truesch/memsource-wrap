@@ -2,7 +2,7 @@ import enum
 
 
 class Base(enum.Enum):
-    url = 'https://cloud.memsource.com/web/api'
+    url = 'https://cloud.memsource.com/web/api2'
     timeout = 60
 
 
@@ -38,6 +38,7 @@ class TermBaseFormat(enum.Enum):
 
 
 class ApiVersion(enum.Enum):
+    v1 = 'v1'
     v2 = 'v2'
     v3 = 'v3'
     v4 = 'v4'
